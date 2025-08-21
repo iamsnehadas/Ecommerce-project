@@ -8,7 +8,7 @@ products.forEach((product) => {
         <div class="picture-card">
             <img src="assets/images/products/${product.imageAlt}.jpg" alt="${product.imageAlt}" class="picture">
             <div class="description">${product.name}</div>
-            <div class="pricing">₹${product.pricePaise / 100}</div>
+            <div class="pricing">₹${(product.pricePaise / 100).toFixed(2)}</div>
             <button class="add-to-cart">Add To Cart</button>
         </div>
     `
