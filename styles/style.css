@@ -1,0 +1,145 @@
+* {
+    box-sizing: border-box;
+}
+html, body {
+    margin: 0;
+    padding: 0;
+}
+:root {
+    --bg-color: #ffffff;
+    --text-color: #222222;
+    --button-color: #B48C53;
+    --tile-color: #EAEAEA;
+
+}
+body {
+    font-family: 'Inter';
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    padding-top: 20px;
+}
+.title-artifex {
+    font-family: 'Playfair Display';
+    text-align: center;
+    font-size: 64px;
+}
+.logo {
+    height: 80px;
+    padding-left: 40px;
+}
+header, .navbar {
+    display: flex;
+    flex-direction: row;
+}
+.navbar {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+}
+.right {
+    display: flex;
+    flex-direction: row;
+    padding-right: 40px;
+}
+.center a {
+    font-family: 'Playfair Display';
+    font-size: 24px;
+    text-align: center;
+    margin-top: 20px;
+    text-decoration: none;
+    margin: 10px;
+}
+.cart {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    position: relative;
+}
+.user, .cart-img {
+    height: 50px;
+    padding-left: 40px; 
+    margin: 10px;   
+}
+.cart-counter {
+    text-align: center;
+    position: absolute;
+    padding-left: 30px;
+    font-size: 30px;
+    font-family: 'Playfair Display';
+}
+.cart-img {
+    padding: 0;
+}
+.center {
+    flex-grow: 1;
+    text-align: center;
+    justify-content: center;
+    align-self: center;
+}
+
+/*---------nav bar end-------------*/
+
+/*----hero section---------*/
+.headline {
+    text-align: center;
+    font-family: 'Playfair Display';
+    font-size: 48px;
+}
+.tagline {
+    text-align: center;
+    font-family: 'Inter';
+    font-size: 24px;
+}
+/*--------hero end-----*/
+
+/*---------picture card-------*/
+.picture-card {
+    margin-top: 80px;
+    padding-left: 80px;
+}
+.picture {
+    height: 500px;
+    width: auto;
+    box-shadow: 0 4px 10px black;
+    margin-bottom: 30px;
+}
+.description, .pricing {
+    font-size: 18px;
+    font-weight: 700;
+    font-family: 'Fondamento';
+}
+.pricing {
+    font-size: 16px;
+    font-weight: 600;
+}
+.add-to-cart {
+    background-color: var(--button-color);
+    color: var(--text-color);
+    border-radius: 15px;
+    box-shadow: 0 2px 6px var(--text-color);
+    border: transparent;
+    padding: 15px 25px;
+    font-size: 24px;
+    font-weight: 600;
+    margin-top: 40px;
+    font-family: 'Fondamento';
+}
+
+.products-holder {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+}
+/*------picture card end------*/
+
+
+/*---Footer---*/
+.attribution {
+    margin-top: 200px;
+    text-align: center;
+    font-family: 'Playfair Display';
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 40px;
+}
+/*---Footer End---*/
