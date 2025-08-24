@@ -1,0 +1,46 @@
+body {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 25px;
+    flex-direction: column;
+}
+.title-cart {
+    font-size: 48px;
+    font-weight: 700;
+    font-family: 'Playfair Display';
+    text-align: center;
+    padding-bottom: 30px;
+}
+.picture-cart {
+    height: 200px;
+    width: auto;
+    margin-right: 30px;
+    margin-bottom: 30px;
+}
+.picture-list-cart {
+    display: flex;
+    flex-direction: row;
+}
+.description-cart, .pricing-cart {
+    font-size: 24px;
+    font-weight: 700;
+    font-family: 'Fondamento';
+    padding-bottom: 20px;
+}
+.product-details-cart {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+.pricing-cart {
+    font-size: 20px;
+}
+.quantity-control {
+    display: flex;
+    flex-direction: row;
+}
+.count-cart {
+    padding: 0px 10px;
+    font-size: 20px;
+}
