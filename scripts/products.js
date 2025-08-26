@@ -1,28 +1,20 @@
 export const products = [
     {
         id: '5s6g7m4h0v4h6m8l',
+        company: 'Writmax',
         name: 'Vintage Leather Diary - 2025',
-        pricePaise: 39900,
+        detail: 'A vintage leather diary, handcrafted, uses handmade papers.',
+        whyBuy: ['lorem ipsum lorem ipsum', 'lorem ipsum lorem ipsum lorem ipsum lorem ipsum', 'lorem ipsum lorem ipsum', 'lorem ipsum lorem ipsum'],
+        pricePaise: 69900,
         imageAlt: 'leather-diary',
         count: 0
     },
     {
-        id: '9i3psg9p3m0gqf3m',
-        name: 'Aesthetic Pen and Pencil Holder',
-        pricePaise: 25000,
-        imageAlt: 'aesthetic-penstand',
-        count: 0
-    },
-    {
-        id: '5v4t7v2jud5t0u3r',
-        name: 'Artisanal Coffee Beans 50g',
-        pricePaise: 29900,
-        imageAlt: 'Artisanal Coffee Beans',
-        count: 0
-    },
-    {
         id: '4h7o0s8k9r7o6p5t',
+        company: 'Writmax',
         name: 'Fountain Pen with Blue Ink',
+        detail: 'A modern, classy fountain pen set, with a free blue ink bottle and dropper',
+        whyBuy: ['lorem ipsum lorem ipsum', 'lorem ipsum lorem ipsum lorem ipsum lorem ipsum', 'lorem ipsum lorem ipsum', 'lorem ipsum lorem ipsum'],
         pricePaise: 49900,
         imageAlt: 'Fountain pen',
         count: 0
@@ -30,8 +22,18 @@ export const products = [
     {
         id: '5g1f2u2w3w0q7g3q',
         name: 'Handmade Vintage Utensils set',
+        detail: 'A modern, classy fountain pen set, with a free blue ink bottle and dropper',
+        whyBuy: ['lorem ipsum lorem ipsum', 'lorem ipsum lorem ipsum lorem ipsum lorem ipsum', 'lorem ipsum lorem ipsum', 'lorem ipsum lorem ipsum'],
         pricePaise: 75000,
         imageAlt: 'Handmade utensil set',
+        count: 0
+    },
+    {
+        id: '9i3psg9p3m0gqf3m',
+        company: 'Writmax',
+        name: 'Aesthetic Pen and Pencil Holder',
+        pricePaise: 25000,
+        imageAlt: 'aesthetic-penstand',
         count: 0
     },
     {
@@ -56,6 +58,13 @@ export const products = [
         count: 0
     },
     {
+        id: '5v4t7v2jud5t0u3r',
+        name: 'Artisanal Coffee Beans 50g',
+        pricePaise: 29900,
+        imageAlt: 'Artisanal Coffee Beans',
+        count: 0
+    },
+    {
         id: '0s5o0d2o9v7h1r2l',
         name: 'Lavendar Scented Candle',
         pricePaise: 29900,
@@ -71,6 +80,7 @@ export const products = [
     },
     {
         id: '4q0l4l2f3r7k1s8n',
+        company: 'Writmax',
         name: 'Minimalist Daily Planner - No Date',
         pricePaise: 19900,
         imageAlt: 'Planner',

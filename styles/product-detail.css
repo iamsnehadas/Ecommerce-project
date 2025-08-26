@@ -1,0 +1,85 @@
+.picture-card {
+    display: flex;
+    flex-direction: row;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.product-information {
+    margin-left: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.product-title {
+    font-size: 45px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    font-family: 'Playfair Display';
+}
+
+.product-details {
+    font-size: 24px; 
+    font-weight: 600;
+    color:darkslategray;   
+}
+
+.product-company {
+    font-size: 20px;
+    font-weight: 300;
+    color: #767676;
+}
+
+.product-pricing {
+    padding-top: 24px;
+    font-weight: 600;
+    color:rgb(71, 67, 16);
+}
+
+.add-to-cart {
+    background-color: #fdca0095;
+    color: var(--text-color);
+    border-radius: 15px;
+    box-shadow: 4px 2px 6px var(--text-color);
+    border: transparent;
+    padding: 15px 25px;
+    font-size: 24px;
+    font-weight: 600;
+    font-family: 'Fondamento';
+    margin-left: 5%;
+}
+
+.benefit {
+    margin-top: 30px;
+    border: 1px solid #333;
+    border-bottom-left-radius: 15px;
+    padding: 15px;
+    box-shadow: 10px 2px 0 0 #767676;
+}
+
+.benefit ul li {
+    font-size: 18px;
+}
+
+.add-product {
+    display: flex;
+    flex-direction: row;
+}
+
+#quantity {
+    margin-top: 10%;
+    padding: 5px;
+    width: 80px;
+    height: 50px;
+    font-size: 22px;
+    font-weight: 600;
+    color:rgb(27, 41, 56);
+    border: 2px solid black;
+}
+
+#quantity option {
+    font-size: 20px;
+    font-weight: 300;
+    text-align: center;
+}
