@@ -28,13 +28,11 @@ productDetailer.innerHTML =
                 </ul>
             </div>                
             <div class="add-product">
-                <select name="quantity" id="quantity">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select>
+                <div class="quantity">
+                    <button class="decrease-quantity" data-decrease-id="${product.id}">-</button>
+                    <div class="count-product">1</div>
+                    <button class="increase-quantity" data-increase-id="${product.id}">+</button>
+                </div>
                 <button class="add-to-cart js-cart-button" data-product-id="${product.id}">Add To Cart</button>
             </div>            
         </div>

@@ -58,6 +58,9 @@ cartList.addEventListener('click', (event) => {
             if(removeCard) {
                 removeCard.remove();
             }
+            if(Object.keys(inCart).length === 0) {
+                    cartList.innerHTML = `<p class='default-cart'>Keep shopping and add products to your cart!</p>`
+                }
         }
         else {
             const countParentDiv = buttonClicked.parentElement;
@@ -81,4 +84,8 @@ function changeCartType() {
         }
     }
     return newCartArray;
+}
+
+if(cartArray.length === 0) {
+    cartList.innerHTML = `<p class='default-cart'>Keep shopping and add products to your cart!</p>`
 }
