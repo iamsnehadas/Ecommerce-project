@@ -1,5 +1,5 @@
 import { products } from "./products.js";
-import { addToCart, getCartTotal } from "./saveCart.js";
+import { addToCart, getCartTotal, cartArray } from "./saveCart.js";
 
 const productDetailer = document.querySelector('.product-detail');
 const cartCounter = document.querySelector('.cart-counter');
@@ -13,7 +13,6 @@ const product = products.find(myProduct => myProduct.id === urlId);
 productDetailer.innerHTML = 
 `
     <div class="picture-card">
-        <div class="picture-card">
         <div class="product-image">
             <img src="assets/images/products/${product.imageAlt}.jpg" alt="${product.imageAlt}" class="picture">
         </div>
@@ -36,18 +35,19 @@ productDetailer.innerHTML =
                 <button class="add-to-cart js-cart-button" data-product-id="${product.id}">Add To Cart</button>
             </div>            
         </div>
-    </div> 
     </div>
 `;
 
 cartCounter.innerText = getCartTotal();
-const quantityVal = document.getElementById('quantity');
+const quantityVal = document.querySelector('.count-product');
+const increaseButton = document.querySelector('.increase-quantity');
+const decreaseButton = document.querySelector('.decrease-quantity');
 
 productDetailer.addEventListener('click', function(event) {
     const productButton = event.target;
     if(productButton.classList.contains('js-cart-button')) {
         const productId = productButton.getAttribute('data-product-id'); 
-        let quantity = Number(quantityVal.value);       
+        let quantity = Number(quantityVal.innerHTML);       
         for(let i = 0; i < quantity; i++) {
             addToCart(productId);
         }
@@ -56,3 +56,35 @@ productDetailer.addEventListener('click', function(event) {
     }
 });
 
+const updateButton = (quantity) => {
+    if(quantity <= 1) {
+        decreaseButton.classList.add('inactive');
+    }
+    if(quantity >= 9) {
+        increaseButton.classList.add('inactive');
+    }
+    if(quantity > 1) {
+        decreaseButton.classList.remove('inactive');
+    }
+    if(quantity < 10) {
+        increaseButton.classList.remove('inactive');
+    }
+};
+
+decreaseButton.addEventListener('click', () => {  
+    let quantity = Number(quantityVal.innerHTML);   
+    if(quantity > 1) {
+        quantity--;
+        quantityVal.innerHTML = `${quantity}`; 
+        updateButton(quantity);   
+    }
+});
+
+increaseButton.addEventListener('click', () => {   
+    let quantity = Number(quantityVal.innerHTML); 
+    if(quantity <= 9) {
+        quantity++; 
+        quantityVal.innerHTML = `${quantity}`; 
+        updateButton(quantity);      
+    }    
+});
