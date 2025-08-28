@@ -2,7 +2,7 @@ export const products = [
     {
         id: '5s6g7m4h0v4h6m8l',
         company: 'Writmax',
-        name: 'Vintage Leather Diary - 2025',
+        name: 'Vintage Leather Diary',
         detail: 'A vintage-style diary handcrafted with a genuine leather cover and filled with eco-friendly handmade paper.',
         whyBuy: ['Hand-stitched binding for durability and charm.', 'Genuine leather cover that ages beautifully over time.', 'Eco-friendly, acid-free handmade paper.', 'Perfect for journaling, sketching, or as a timeless gift.'],
         pricePaise: 69900,
