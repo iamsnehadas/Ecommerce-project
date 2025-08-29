@@ -85,7 +85,7 @@ export const products = [
         detail: 'A hand-poured soy wax candle infused with natural lavender essential oils. Creates a calming and relaxing atmosphere in any room.',
         whyBuy: ['Infused with natural lavender oil for ultimate relaxation.', 'Made from clean-burning, eco-friendly soy wax.', 'Long-lasting burn time to enjoy the fragrance for hours.', 'Comes in a beautiful, reusable minimalist glass jar.'],
         pricePaise: 29900,
-        imageAlt: 'Lavender-scented-candle',
+        imageAlt: 'Lavendar-scented-candle',
         count: 0
     },
     {
