@@ -18,18 +18,23 @@ for(const productId in inCart) {
     if(productFound) {
         cartHtml +=
             `
-                <div class="picture-list-cart">
+                <div class="product-list-container">
+                    <div class="image-title">Product</div>
+                    <div class="product-title">Name</div>
+                    <div class="price-title">Price</div>
+                    <div class="update-title">Update</div>
+                    
                     <img src="assets/images/products/${productFound.imageAlt}.jpg" alt="${productFound.imageAlt}" class="picture-cart">
-                    <div class="product-details-cart">
-                        <div class="description-cart">${productFound.name}</div>
-                        <div class="pricing-cart">₹${(productFound.pricePaise / 100).toFixed(2)}</div>
-                        <div class="quantity-control">
-                            <button class="increase" data-increase-id="${productFound.id}">+</button>
-                            <div class="count-cart">${inCart[productId].quantity}</div>
-                            <button class="decrease" data-decrease-id="${productFound.id}">-</button>
-                        </div>
+                    <div class="description-cart">${productFound.name}</div>
+                    <div class="pricing-cart">₹${(productFound.pricePaise / 100).toFixed(2)}</div>
+                    <div class="quantity-control">
+                        <button class="decrease" data-decrease-id="${productFound.id}">-</button>
+                        <div class="count-cart">${inCart[productId].quantity}</div>
+                        <button class="increase" data-increase-id="${productFound.id}">+</button>  
                     </div>
+                    
                 </div>
+                <div class="divider"></div>
             `
     }
 }
