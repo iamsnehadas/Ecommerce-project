@@ -50,6 +50,7 @@ export const products = [
         count: 0
     },
     {
+        id: '5v5s1s2s7e3t7o2f',
         company: 'TerraCraft',
         name: 'Handmade Aesthetic Plates (Set of 1)',
         detail: 'A single, stunningly designed ceramic plate, ideal as a dinner plate or a decorative piece. Features a subtle, elegant glaze.',

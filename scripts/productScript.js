@@ -88,3 +88,13 @@ increaseButton.addEventListener('click', () => {
         updateButton(quantity);      
     }    
 });
+
+window.addEventListener('storage', (event) => {
+    if(event.key === 'cartArrayList') {
+        const newString = event.newValue;
+        const newCart = JSON.parse(newString) || [];
+        if(cartCounter) {
+            cartCounter.innerText = newCart.length;
+        }
+    }
+});

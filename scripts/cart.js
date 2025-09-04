@@ -2,6 +2,8 @@ import { products } from "./products.js";
 import { cartArray, updateCart } from "./saveCart.js";
 
 const cartList = document.querySelector('.cartProducts');
+const checkOut = document.querySelector('.checkOut');
+const defaultCart = document.querySelector('.default-cart');
 let cartHtml = '';
 let inCart = {};
 cartArray.forEach((productId) => {
@@ -49,20 +51,30 @@ cartList.addEventListener('click', (event) => {
         const countParentDiv = buttonClicked.parentElement;
         const countCart = countParentDiv.querySelector('.count-cart');
         countCart.innerHTML = `${inCart[quantityProductId].quantity}`;
-        changed = true;
+        changed = true;        
     }
     else if(buttonClicked.classList.contains('decrease')) {
         const quantityProductId = buttonClicked.getAttribute('data-decrease-id');
         inCart[quantityProductId].quantity--;
         if(inCart[quantityProductId].quantity <= 0) {
             delete inCart[quantityProductId];
-            const removeCard = buttonClicked.closest('.picture-list-cart');
+            const removeCard = buttonClicked.closest('.product-details-container');
+            const divideRemove = removeCard.nextElementSibling;
             if(removeCard) {
                 removeCard.remove();
+                if(divideRemove && divideRemove.classList.contains('divider')) {
+                    divideRemove.remove();
+                }
             }
             if(Object.keys(inCart).length === 0) {
-                    cartList.innerHTML = `<p class='default-cart'>Keep shopping and add products to your cart!</p>`
+                if(checkOut) {
+                    checkOut.style.display = 'none';
                 }
+                if(cartList) {
+                    cartList.style.display = 'none';
+                }
+                defaultCart.style.display = 'flex';
+            }
         }
         else {
             const countParentDiv = buttonClicked.parentElement;
@@ -74,6 +86,7 @@ cartList.addEventListener('click', (event) => {
     if(changed) {
         const newArraySave = changeCartType();
         updateCart(newArraySave);
+        showSubTotal();
     }
 });
 
@@ -89,5 +102,78 @@ function changeCartType() {
 }
 
 if(cartArray.length === 0) {
-    cartList.innerHTML = `<p class='default-cart'>Keep shopping and add products to your cart!</p>`
+    if(checkOut) {
+        checkOut.style.display = 'none';
+    }
+    if(cartList) {
+        cartList.style.display = 'none';
+    }
+    defaultCart.style.display = 'flex';
 }
+
+
+let checkoutHtml = '';
+
+checkoutHtml +=
+`
+    <div class="coupon">
+        <h3>Do you have a coupon code?</h3>
+        <div class="coupon-apply">
+            <input type="text" name="coupon" id="coupon">
+            <button class="apply">Apply</button>
+        </div>
+    </div>
+    <div class="divider"></div>
+    <div class="pay-cal">
+        <div class="temp-total">
+            <p class="subtotal-main">Subtotal</p>
+            <p class="subtotal-number">₹${calcSubTotal()}</p>
+        </div>
+        <div class="temp-total">
+            <p class="subtotal">Coupon Applied</p>
+            <p class="couponApplied">45454</p>
+        </div>
+        <div class="temp-total">
+            <p class="subtotal">Delivery Charge</p>
+            <p class="delivery">6565656</p>
+        </div>
+        <div class="temp-total">
+            <p class="subtotal">Tax Applicable</p>
+            <p class="tax">565654</p>
+        </div>
+    </div>
+    <div class="divider"></div>
+    <div class="temp-total count-total">
+        <p class="total">Estimated Total</p>
+        <p class="total-val">45453213</p>
+    </div>
+    <div class="divider"></div>
+`
+checkOut.innerHTML += checkoutHtml;
+
+
+function calcSubTotal() {
+    let newSubTotal = 0;
+    for(const productId in inCart) {
+        const productFound = products.find(product => product.id === productId);
+        if(productFound) {
+            newSubTotal += (productFound.pricePaise * inCart[productId].quantity);
+        }
+    }
+    return ((newSubTotal / 100).toFixed(2));
+}
+
+function showSubTotal() {
+    const subTotalSHow = document.querySelector('.subtotal-number');
+    if(subTotalSHow) {
+        subTotalSHow.textContent = `₹${calcSubTotal()}`;
+    }
+}
+
+
+
+window.addEventListener('storage', (event) => {
+    if(event.key === 'cartArrayList') {  //cartArrayList is the localstorage key (in savecart)
+        location.reload();
+    }
+});
