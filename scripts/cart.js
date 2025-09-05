@@ -1,5 +1,8 @@
 import { products } from "./products.js";
-import { cartArray, updateCart } from "./saveCart.js";
+import { updateCart } from "./saveCart.js";
+import { couponList } from "./coupon.js";
+
+const cartArray = JSON.parse(localStorage.getItem('cartArrayList')) || [];
 
 const cartList = document.querySelector('.cartProducts');
 const checkOut = document.querySelector('.checkOut');
@@ -87,6 +90,9 @@ cartList.addEventListener('click', (event) => {
         const newArraySave = changeCartType();
         updateCart(newArraySave);
         showSubTotal();
+        showDelivery();
+        showTax();
+        showTotal();
     }
 });
 
@@ -131,23 +137,24 @@ checkoutHtml +=
         </div>
         <div class="temp-total">
             <p class="subtotal">Coupon Applied</p>
-            <p class="couponApplied">45454</p>
+            <p class="couponApplied">₹${0}</p>
         </div>
         <div class="temp-total">
             <p class="subtotal">Delivery Charge</p>
-            <p class="delivery">6565656</p>
+            <p class="delivery">₹${calcDelivery()}</p>
         </div>
         <div class="temp-total">
             <p class="subtotal">Tax Applicable</p>
-            <p class="tax">565654</p>
+            <p class="tax">₹${calcTax()}</p>
         </div>
     </div>
     <div class="divider"></div>
     <div class="temp-total count-total">
         <p class="total">Estimated Total</p>
-        <p class="total-val">45453213</p>
+        <p class="total-val">₹${calcTotal()}</p>
     </div>
     <div class="divider"></div>
+    <a href='payment.html'><button class="pay">Proceed To Pay</button></a>
 `
 checkOut.innerHTML += checkoutHtml;
 
@@ -164,12 +171,94 @@ function calcSubTotal() {
 }
 
 function showSubTotal() {
-    const subTotalSHow = document.querySelector('.subtotal-number');
-    if(subTotalSHow) {
-        subTotalSHow.textContent = `₹${calcSubTotal()}`;
+    const subTotalShow = document.querySelector('.subtotal-number');
+    if(subTotalShow) {
+        subTotalShow.textContent = `₹${calcSubTotal()}`;
     }
 }
 
+
+const couponApplyButton = document.querySelector('.apply');
+couponApplyButton.addEventListener('click', () => {
+    showCoupon();
+    showTotal();
+});
+
+function calcCoupon() {
+    const couponString = document.getElementById('coupon');
+    let couponValue = '';
+    if(couponString) {
+        couponValue = couponString.value;
+    }
+    let calcValue = 0;
+    const couponFound = couponList.find(coupon => coupon.code === couponValue);
+    if(couponFound) {
+        if(couponFound.type === 'percentage') {
+            calcValue = calcSubTotal() * couponFound.value / 100;
+        }
+        if(couponFound.type === 'fixed') {
+            calcValue = couponFound.value;
+        }
+        return calcValue;
+    }
+}
+
+function showCoupon() {
+    const couponShow = document.querySelector('.couponApplied');
+    if(couponShow) {
+        couponShow.textContent = `₹${calcCoupon()}`;
+    }
+}
+
+function calcDelivery() {    
+    let deliveryCharge = 0;
+    if(calcSubTotal() >= 500) {
+        deliveryCharge = 0;
+    }
+    else {
+        deliveryCharge = 50;
+    }
+    return deliveryCharge;
+}
+
+function showDelivery() {
+    const delivery = document.querySelector('.delivery');
+    if(delivery) {
+        delivery.textContent = `₹${calcDelivery()}`;
+    }
+}
+
+function calcTax() {
+    if(calcSubTotal < 900) {
+        return (calcSubTotal() * 0.10).toFixed(2);
+    }
+    else {
+        return (calcSubTotal() * 0.05).toFixed(2);
+    }
+}
+
+function showTax() {
+    const tax = document.querySelector('.tax');
+    if(tax) {
+        tax.textContent = `₹${calcTax()}`;
+    }
+}
+
+function calcTotal() {
+    let subtotalInCart = parseFloat(calcSubTotal());
+    let couponInCart = calcCoupon() || 0;
+    couponInCart = parseFloat(couponInCart);
+    let deliveryInCart = calcDelivery();
+    let taxInCart = parseFloat(calcTax());
+    return subtotalInCart - couponInCart + deliveryInCart + taxInCart;
+}
+
+function showTotal() {
+    const totalToShow = document.querySelector('.total-val');
+    if(totalToShow) {
+        totalToShow.textContent = `₹${calcTotal()}`;
+    }
+}
 
 
 window.addEventListener('storage', (event) => {

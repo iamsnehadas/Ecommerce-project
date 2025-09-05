@@ -172,11 +172,26 @@ body {
     color: rgb(255, 255, 255);
     font-weight: 300;
     font-family: 'Quintessential';
+    text-transform: uppercase;
     border: transparent;
     box-shadow: 0 0 3px 0 #000000;
     margin-left: 20px;
     background-color: #3a3838;
     padding: 10px 15px;
+}
+
+.pay {
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+    font-weight: 500;
+    font-family: 'Quintessential';
+    text-transform: uppercase;
+    border: transparent;
+    box-shadow: 0 0 3px 0 #000000;
+    background-color: #3a3838;
+    padding: 10px 15px;
+    margin-top: 30px;
+    width: 30vw;
 }
 
 
@@ -219,7 +234,7 @@ body {
         padding: 0;
     }
     #coupon {
-        width: 36vw;
+        width: 50%;
     }
     .cartProducts {
         width: 80vw;
@@ -250,5 +265,11 @@ body {
     }
     .new.divider {
         display: none;
+    }
+    .pay {
+        width: 60vw;
+    }
+    .apply {
+        margin-bottom: 30px;
     }
 }

@@ -1,4 +1,9 @@
-const couponList = [
+export const couponList = [
+    {
+        code: '',
+        type: 'fixed',
+        value: 0
+    },
     {
         code: 'WELCOME15',
         type: 'percentage',

@@ -1,5 +1,5 @@
 import { products } from "./products.js";
-import { addToCart, getCartTotal, cartArray } from "./saveCart.js";
+import { addToCart, getCartTotal} from "./saveCart.js";
 
 const productDetailer = document.querySelector('.product-detail');
 const cartCounter = document.querySelector('.cart-counter');
@@ -52,7 +52,7 @@ productDetailer.addEventListener('click', function(event) {
             addToCart(productId);
         }
         cartCounter.innerText = getCartTotal();        
-        console.log(cartArray);
+        console.log(JSON.parse(localStorage.getItem('cartArrayList')));
     }
 });
 

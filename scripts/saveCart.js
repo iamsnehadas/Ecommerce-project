@@ -1,20 +1,21 @@
-export let cartArray = JSON.parse(localStorage.getItem('cartArrayList')) || [];
+/*export let cartArray = JSON.parse(localStorage.getItem('cartArrayList')) || []; 
 
 export function saveCart() {
     localStorage.setItem('totalInCart', cartArray.length.toString());
     localStorage.setItem('cartArrayList', JSON.stringify(cartArray));
 }
-
+*/
 export function addToCart(productId) {
-    cartArray.push(productId);
-    saveCart();
+    const currentCart = JSON.parse(localStorage.getItem('cartArrayList')) || [];
+    currentCart.push(productId);
+    localStorage.setItem('cartArrayList', JSON.stringify(currentCart));
 }
 
 export function getCartTotal() {
-    return cartArray.length;
+    const currentCart = JSON.parse(localStorage.getItem('cartArrayList')) || [];
+    return currentCart.length;
 }
 
 export function updateCart(newCart) {
-    cartArray = newCart;
-    saveCart();
+    localStorage.setItem('cartArrayList', JSON.stringify(newCart));
 }
