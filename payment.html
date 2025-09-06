@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <link rel="stylesheet" href="styles/payment.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair Display|Inter|Quintessential|Fondamento|Roboto">
+    <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="brand">
+                <a href="index.html">
+                    <img src="assets/images/Artifex.svg" alt="Artifex HomePage" class="logo">
+                </a>
+            </div>
+        </nav>        
+    </header>
+
+    <div class="pay-container">
+        <div class="ship-and-pay">
+            <div class="shipping">
+                <h2 class="title">Shipping Information</h2>
+                <div class="form">
+                    <div class="name">
+                        <input type="text" name="firstName" id="firstName" placeholder="Enter Your First Name">
+                        <input type="text" name="lastName" id="lastName" placeholder="Enter Your Last Name">
+                    </div>
+                    <input type="email" name="email" id="email" placeholder="Enter Your Email Address">
+                    <input type="text" name="address" id="address" placeholder="Enter Your Address">                    
+                    <input type="text" name="pin" id="pin" placeholder="PIN Code">
+                    <div class="name">
+                        <input type="text" name="state" id="state" placeholder="State">
+                        <input type="text" name="country" id="country" placeholder="Country">
+                    </div>
+                    <input type="text" name="landmark" id="landmark" placeholder="Nearest Landmark">
+                    <button type="submit" class="submit">Submit</button>
+                </div>
+            </div>
+            <div class="payment">
+                <h2 class="title">Payment Information</h2>
+                <div class="form-pay">
+                    <input type="radio" name="payment-method" id="upi" value="upi">
+                    <label for="upi">UPI</label>
+                    <input type="radio" name="payment-method" id="card" value="card">
+                    <label for="card">Credit/Debit Card</label>
+                    <input type="radio" name="payment-method" id="paypal" value="paypal">
+                    <label for="paypal">Paypal</label>
+                    <button type="submit" class="pay">Pay</button>
+                </div>
+            </div>
+        </div>
+        <div class="summary-confirm">
+            
+        </div>
+    </div>
+
+    <footer>
+        <div class="attribution"> Made by Sneha Das</div>
+    </footer>
+    <script type="module" src="scripts/payment.js"></script>
+</body>
+</html>

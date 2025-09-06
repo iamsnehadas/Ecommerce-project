@@ -162,7 +162,7 @@ body {
 #coupon {
     margin-bottom: 30px;
     box-shadow: 0 0px 6px 0 #333;
-    width: 20vw;
+    width: 60%;
     border: transparent;
     height: 3vh;
     background-color: rgb(246, 246, 237);
@@ -191,7 +191,7 @@ body {
     background-color: #3a3838;
     padding: 10px 15px;
     margin-top: 30px;
-    width: 30vw;
+    width: 100%;
 }
 
 
@@ -267,7 +267,7 @@ body {
         display: none;
     }
     .pay {
-        width: 60vw;
+        width: 100%;
     }
     .apply {
         margin-bottom: 30px;
