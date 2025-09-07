@@ -18,6 +18,8 @@ html, body {
     flex-direction: row;
     margin-top: 4%;
     padding-left: 40px;
+    justify-content: space-between;
+    padding-right: 40px;
 }
 .ship-and-pay {
     display: flex;
@@ -31,7 +33,7 @@ html, body {
     border: transparent;
     width: 55vw;
     border: transparent;
-    background-color: antiquewhite;
+    background-color: rgb(249, 246, 241);
 }
 .payment {
     margin-top: 2%;
@@ -132,6 +134,91 @@ input[type="radio"]:disabled + label {
 .pay {
     margin-top: 20px;
 }
+.disclaimer {
+    color: rgb(147, 147, 147);
+    text-align: center;
+    margin-top: 10px;
+}
+
+
+/*summary*/
+.picture-cart{
+    height: 100px;
+    grid-area: image;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 4px #494949;
+}
+.details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 20px;
+    font-weight: 600;
+    color: #494949;
+    font-family: 'Inter';
+}
+.product {
+    display: flex;
+    flex-direction: row;
+}
+.order-summary a, .order-summary a:visited {
+    text-decoration: none;
+    color: #232323;
+}
+.order-summary {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.description-cart {
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    padding-bottom: 10px;
+}
+.pricing-cart {
+    padding-top: 10px;
+    display: flex;
+    align-items: center;
+    color: #232323;
+}
+.count-cart { 
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: #232323;
+}
+
+.summary-confirm {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    padding-top: 0;
+    border: transparent;
+    width: 35vw;
+    border: transparent;
+    background-color: rgb(249, 246, 241);
+    max-height: fit-content;
+}
+
+/*total calculation*/
+.temp-total {
+    display: flex;
+    flex-direction: row;
+    font-size: 18px;
+    justify-content: space-between;
+}
+.count-total.temp-total {
+    font-size: 20px;
+    font-weight: 600;
+}
+.divider {
+    border: none;
+    border-bottom: 2px solid #333;
+}
+
 /*---footer---*/
 .attribution {
     margin-top: 200px;

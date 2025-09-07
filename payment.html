@@ -29,13 +29,14 @@
                         <input type="text" name="lastName" id="lastName" placeholder="Enter Your Last Name">
                     </div>
                     <input type="email" name="email" id="email" placeholder="Enter Your Email Address">
+                    <input type="tel" name="phone" id="phone" placeholder="Enter Your Phone Number">
                     <input type="text" name="address" id="address" placeholder="Enter Your Address">                    
                     <input type="text" name="pin" id="pin" placeholder="PIN Code">
                     <div class="name">
                         <input type="text" name="state" id="state" placeholder="State">
                         <input type="text" name="country" id="country" placeholder="Country">
                     </div>
-                    <input type="text" name="landmark" id="landmark" placeholder="Nearest Landmark">
+                    <input type="text" name="landmark" id="landmark" placeholder="Nearest Landmark (Optional)">
                     <button type="submit" class="submit">Submit</button>
                 </div>
             </div>
@@ -48,12 +49,47 @@
                     <label for="card">Credit/Debit Card</label>
                     <input type="radio" name="payment-method" id="paypal" value="paypal">
                     <label for="paypal">Paypal</label>
-                    <button type="submit" class="pay">Pay</button>
+                    <button type="submit" class="pay">Pay ₹56565.00</button>
+                    <div class="disclaimer">Your payment is 100% safe and encrypted.</div>
                 </div>
             </div>
         </div>
         <div class="summary-confirm">
-            
+            <h2 class="title">Order Summary</h2>
+            <div class="order-summary">
+                <a href="cart.html" class="product"> 
+                    <img src="assets/images/products/planner.jpg" alt="planner" class="picture-cart">
+                    <div class='details'> 
+                        <div class="description-cart">Minimalist Daily Planner - No Date</div>
+                        <div class="count-cart">Qty: 5</div>
+                        <div class="pricing-cart">232323</div>
+                    </div>
+                </a>
+            </div>
+            <div class="divider"></div>
+            <div class="pay-summary">
+                <div class="temp-total">
+                    <p class="subtotal-main">Subtotal</p>
+                    <p class="subtotal-number">₹995</p>
+                </div>
+                <div class="temp-total">
+                    <p class="subtotal">Coupon Applied</p>
+                    <p class="couponApplied">₹0</p>
+                </div>
+                <div class="temp-total">
+                    <p class="subtotal">Delivery Charge</p>
+                    <p class="delivery">₹0</p>
+                </div>
+                <div class="temp-total">
+                    <p class="subtotal">Tax Applicable</p>
+                    <p class="tax">₹49.75</p>
+                </div>
+            </div>
+            <div class="divider"></div>
+            <div class="temp-total count-total">
+                <p class="total">Estimated Total</p>
+                <p class="total-val">₹1044.75</p>
+            </div>
         </div>
     </div>
 
