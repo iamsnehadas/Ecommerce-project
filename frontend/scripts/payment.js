@@ -1,6 +1,6 @@
 import { products } from './products.js';
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'https://ecommerce-project-52ni.onrender.com/api';
 
 const script = document.createElement('script');
 script.src = 'https://sdk.cashfree.com/js/v3/cashfree.js';

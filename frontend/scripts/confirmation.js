@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'https://ecommerce-project-52ni.onrender.com/api';
 
 document.addEventListener('DOMContentLoaded', async () => {
     const orderId = localStorage.getItem('lastOrderId');
