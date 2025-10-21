@@ -149,6 +149,7 @@ input[type="radio"]:disabled + label {
     justify-content: center;
     align-items: center;
     box-shadow: 0 2px 4px #494949;
+    margin-bottom: 20px;
 }
 .details {
     display: flex;

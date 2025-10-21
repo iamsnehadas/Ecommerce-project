@@ -3,9 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment Confirmation</title>
+    <title>Order Confirmation - Artifex</title>
+    <link rel="stylesheet" href="styles/confirmation.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair Display|Inter|Quintessential|Fondamento|Roboto">
+    <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
 </head>
 <body>
-    
+    <header>
+        <nav class="navbar">
+            <div class="brand">
+                <a href="index.html">
+                    <img src="assets/images/Artifex.svg" alt="Artifex HomePage" class="logo">
+                </a>
+            </div>
+        </nav>        
+    </header>
+
+    <div class="confirmation-container">
+        <div class="success-icon">
+            <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+                <circle cx="40" cy="40" r="38" stroke="#4CAF50" stroke-width="4"/>
+                <path d="M25 40L35 50L55 30" stroke="#4CAF50" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+
+        <h1 class="success-title">Order Placed Successfully!</h1>
+        <p class="success-subtitle">Thank you for your purchase. Your order has been confirmed.</p>
+
+        <div class="order-details-card">
+            <h2>Order Details</h2>
+            <div class="detail-row">
+                <span class="label">Order ID:</span>
+                <span class="value" id="order-id">Loading...</span>
+            </div>
+            <div class="detail-row">
+                <span class="label">Payment ID:</span>
+                <span class="value" id="payment-id">Loading...</span>
+            </div>
+            <div class="detail-row">
+                <span class="label">Order Date:</span>
+                <span class="value" id="order-date">Loading...</span>
+            </div>
+            <div class="detail-row">
+                <span class="label">Order Status:</span>
+                <span class="value status" id="order-status">Processing</span>
+            </div>
+        </div>
+
+        <div class="customer-info-card">
+            <h2>Customer Information</h2>
+            <div class="info-section">
+                <h3>Contact Details</h3>
+                <p id="customer-name">Loading...</p>
+                <p id="customer-email">Loading...</p>
+                <p id="customer-phone">Loading...</p>
+            </div>
+            <div class="info-section">
+                <h3>Shipping Address</h3>
+                <p id="shipping-address">Loading...</p>
+            </div>
+        </div>
+
+        <div class="order-items-card">
+            <h2>Order Items</h2>
+            <div id="order-products">
+                <p>Loading...</p>
+            </div>
+        </div>
+
+        <div class="order-summary-card">
+            <h2>Payment Summary</h2>
+            <div class="summary-row">
+                <span>Subtotal:</span>
+                <span id="subtotal">₹0</span>
+            </div>
+            <div class="summary-row coupon" id="coupon-row" style="display: none;">
+                <span>Coupon Discount (<span id="coupon-code"></span>):</span>
+                <span id="coupon-discount">-₹0</span>
+            </div>
+            <div class="summary-row">
+                <span>Delivery Charge:</span>
+                <span id="delivery-charge">₹0</span>
+            </div>
+            <div class="summary-row">
+                <span>Tax (18%):</span>
+                <span id="tax">₹0</span>
+            </div>
+            <div class="summary-row total">
+                <span>Total Amount:</span>
+                <span id="total-amount">₹0</span>
+            </div>
+        </div>
+
+        <div class="email-notice">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M2 4L10 10L18 4M2 4V16H18V4H2Z" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <p>A confirmation email has been sent to <span id="email-sent"></span></p>
+        </div>
+
+        <div class="action-buttons">
+            <a href="index.html" class="btn btn-primary">Continue Shopping</a>
+            <button onclick="window.print()" class="btn btn-secondary">Print Order</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="attribution">Made by Sneha Das</div>
+    </footer>
+
+    <script type="module" src="scripts/confirmation.js"></script>
 </body>
 </html>
