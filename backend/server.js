@@ -24,7 +24,10 @@ const CASHFREE_APP_ID = process.env.CASHFREE_APP_ID;
 const CASHFREE_SECRET_KEY = process.env.CASHFREE_SECRET_KEY;
 const CASHFREE_API_URL = 'https://sandbox.cashfree.com/pg';
 
-mongoose.connect(process.env.MONGODB_URI)
+mongoose.connect(process.env.MONGODB_URI, {
+  serverSelectionTimeoutMS: 10000,
+  socketTimeoutMS: 45000,
+})
   .then(() => console.log('MongoDB Connected'))
   .catch(err => console.log('MongoDB Error:', err));
 
@@ -137,7 +140,8 @@ app.post('/api/create-order', async (req, res) => {
           'x-api-version': '2023-08-01',
           'x-client-id': CASHFREE_APP_ID,
           'x-client-secret': CASHFREE_SECRET_KEY
-        }
+        },
+        timeout: 15000
       }
     );
     
@@ -165,7 +169,8 @@ app.post('/api/verify-payment', async (req, res) => {
           'x-api-version': '2023-08-01',
           'x-client-id': CASHFREE_APP_ID,
           'x-client-secret': CASHFREE_SECRET_KEY
-        }
+        },
+        timeout: 20000
       }
     );
     
@@ -205,11 +210,11 @@ app.post('/api/verify-payment', async (req, res) => {
           `<tr>
             <td style="padding: 10px; border-bottom: 1px solid #ddd;">${p.name} (${p.company})</td>
             <td style="padding: 10px; border-bottom: 1px solid #ddd; text-align: center;">${p.quantity}</td>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd; text-align: right;">₹${p.price * p.quantity}</td>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd; text-align: right;">₹${((p.price * p.quantity) / 100).toFixed(2)}</td>
           </tr>`
         ).join('');
         
-        await transporter.sendMail({
+        transporter.sendMail({
           from: `"Artifex" <${process.env.EMAIL_USER}>`,
           to: orderData.email,
           subject: `Order Confirmation - ${newOrderId}`,
@@ -297,7 +302,7 @@ app.post('/api/verify-payment', async (req, res) => {
             </body>
             </html>
           `
-        });
+        }).catch(err => console.error('Email error (non-blocking):', err));
         
         res.json({ 
           success: true, 
@@ -312,7 +317,16 @@ app.post('/api/verify-payment', async (req, res) => {
     }
     
   } catch (error) {
-    console.error('Verify payment error:', error.response?.data || error.message);
+    console.error('Verify payment error:', error.message);
+    
+    if (error.code === 'ECONNABORTED' || error.message.includes('timeout')) {
+      return res.status(504).json({ 
+        success: false, 
+        message: 'Verification timeout. Please contact support.',
+        error: 'timeout' 
+      });
+    }
+    
     res.status(500).json({ success: false, error: error.message });
   }
 });

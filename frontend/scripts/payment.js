@@ -12,6 +12,7 @@ let cashfreeInitialized = false;
 script.onload = () => {
     cashfree = Cashfree({ mode: 'sandbox' });
     cashfreeInitialized = true;
+    console.log('Cashfree SDK loaded');
 };
 
 let cart = JSON.parse(localStorage.getItem('cartArrayList')) || [];
@@ -104,7 +105,8 @@ function displayOrderSummary() {
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
-    displayOrderSummary();    
+    displayOrderSummary();
+    
     const submitButton = document.querySelector('.submit');
     const payButton = document.querySelector('.pay');
     
@@ -130,7 +132,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             return;
         }
         
-        //(Indian format)
         const phoneRegex = /^[6-9]\d{9}$/;
         if (!phoneRegex.test(phone)) {
             alert('Please enter a valid 10-digit phone number');
@@ -184,12 +185,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         const payOption = selectedRadio.value;
         console.log('Processing payment via:', payOption);
         
+        const totals = calculateTotals();
+        
         payButton.innerText = 'Processing Payment...';
         payButton.disabled = true;
         
         try {
             const cartProducts = getCartProducts();
-            const totals = calculateTotals();
             
             const orderData = {
                 firstName: shippingInfo.firstName,
@@ -231,7 +233,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             
             const cashfreeOrderId = orderResult.orderId;
             
-            // Open Cashfree checkout
             const checkoutOptions = {
                 paymentSessionId: orderResult.sessionId,
                 redirectTarget: '_modal'
@@ -247,7 +248,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 }
                 
                 if (result.paymentDetails) {
-                    payButton.innerText = 'Verifying...';
+                    payButton.innerText = 'Verifying... (may take 30s)';
                     
                     try {
                         const verifyResponse = await fetch(`${API_URL}/verify-payment`, {
@@ -271,16 +272,15 @@ document.addEventListener('DOMContentLoaded', async () => {
                             
                             localStorage.setItem('lastOrderId', verifyResult.orderId);
                             
-                            // Redirect to confirmation
                             setTimeout(() => {
                                 window.location.href = 'confirmation.html';
                             }, 500);
                         } else {
-                            throw new Error('Payment verification failed');
+                            throw new Error(verifyResult.message || 'Payment verification failed');
                         }
                     } catch (error) {
                         console.error('Verification error:', error);
-                        alert('Payment verification failed. Please contact support.');
+                        alert('Payment verification failed. Your payment was successful but processing is delayed. Please check your email or contact support.');
                         payButton.innerText = `Pay ₹${totals.total}`;
                         payButton.disabled = false;
                     }
