@@ -3,6 +3,7 @@ import { updateCart } from "./saveCart.js";
 import { couponList } from "./coupon.js";
 
 const cartArray = JSON.parse(localStorage.getItem('cartArrayList')) || [];
+console.log(cartArray);
 
 const cartList = document.querySelector('.cartProducts');
 const checkOut = document.querySelector('.checkOut');
