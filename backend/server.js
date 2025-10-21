@@ -7,20 +7,27 @@ require('dotenv').config();
 
 const app = express();
 
-app.use(cors());
+if (!process.env.MONGODB_URI || !process.env.CASHFREE_APP_ID || !process.env.CASHFREE_SECRET_KEY) {
+  console.error('Missing required environment variables!');
+  console.error('Required: MONGODB_URI, CASHFREE_APP_ID, CASHFREE_SECRET_KEY');
+  process.exit(1);
+}
+
+app.use(cors({
+  origin: process.env.FRONTEND_URL || '*',
+  credentials: true
+}));
+
 app.use(express.json());
 
-// Cashfree credentials
 const CASHFREE_APP_ID = process.env.CASHFREE_APP_ID;
 const CASHFREE_SECRET_KEY = process.env.CASHFREE_SECRET_KEY;
-const CASHFREE_API_URL = 'https://sandbox.cashfree.com/pg'; // Change to https://api.cashfree.com/pg for production
+const CASHFREE_API_URL = 'https://sandbox.cashfree.com/pg';
 
-// MongoDB Connection
 mongoose.connect(process.env.MONGODB_URI)
-  .then(() => console.log('✅ MongoDB Connected'))
-  .catch(err => console.log('❌ MongoDB Error:', err));
+  .then(() => console.log('MongoDB Connected'))
+  .catch(err => console.log('MongoDB Error:', err));
 
-// Order Schema
 const orderSchema = new mongoose.Schema({
   orderId: { type: String, unique: true },
   customerName: String,
@@ -55,7 +62,6 @@ const orderSchema = new mongoose.Schema({
 
 const Order = mongoose.model('Order', orderSchema);
 
-// Nodemailer (use your existing portfolio setup)
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
@@ -64,9 +70,6 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-// ============ ROUTES ============
-
-// Validate coupon
 app.post('/api/validate-coupon', (req, res) => {
   const { code, subtotal } = req.body;
   
@@ -104,7 +107,6 @@ app.post('/api/validate-coupon', (req, res) => {
   });
 });
 
-// Create Cashfree Order
 app.post('/api/create-order', async (req, res) => {
   try {
     const { amount, customerDetails } = req.body;
@@ -151,12 +153,10 @@ app.post('/api/create-order', async (req, res) => {
   }
 });
 
-// Verify Payment & Save Order
 app.post('/api/verify-payment', async (req, res) => {
   try {
     const { orderId, orderData } = req.body;
     
-    // Fetch payment details from Cashfree
     const response = await axios.get(
       `${CASHFREE_API_URL}/orders/${orderId}/payments`,
       {
@@ -173,7 +173,6 @@ app.post('/api/verify-payment', async (req, res) => {
       const payment = response.data[0];
       
       if (payment.payment_status === 'SUCCESS') {
-        // Create order in database
         const newOrderId = `ORD${Date.now()}`;
         
         const newOrder = new Order({
@@ -202,7 +201,6 @@ app.post('/api/verify-payment', async (req, res) => {
         
         await newOrder.save();
         
-        // Send email confirmation
         const productsHTML = orderData.products.map(p => 
           `<tr>
             <td style="padding: 10px; border-bottom: 1px solid #ddd;">${p.name} (${p.company})</td>
@@ -319,7 +317,6 @@ app.post('/api/verify-payment', async (req, res) => {
   }
 });
 
-// Get order details
 app.get('/api/orders/:orderId', async (req, res) => {
   try {
     const order = await Order.findOne({ orderId: req.params.orderId });
@@ -332,7 +329,6 @@ app.get('/api/orders/:orderId', async (req, res) => {
   }
 });
 
-// Get all orders (admin)
 app.get('/api/admin/orders', async (req, res) => {
   try {
     const orders = await Order.find().sort({ createdAt: -1 });
@@ -343,4 +339,4 @@ app.get('/api/admin/orders', async (req, res) => {
 });
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
