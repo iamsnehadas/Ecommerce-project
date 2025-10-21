@@ -41,6 +41,7 @@ header, .navbar {
     flex-direction: row;
     padding-right: 40px;
 }
+/*
 .center a {
     font-family: 'Playfair Display';
     font-size: 24px;
@@ -49,6 +50,7 @@ header, .navbar {
     text-decoration: none;
     margin: 10px;
 }
+*/
 .cart {
     display: flex;
     flex-direction: column;
