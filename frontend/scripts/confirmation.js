@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <div class="order-item-company">${product.company}</div>
                     <div class="order-item-quantity">Quantity: ${product.quantity}</div>
                 </div>
-                <div class="order-item-price">₹${product.price * product.quantity}</div>
+                <div class="order-item-price">₹${product.price * product.quantity / 100}</div>
             </div>
         `).join('');
         
