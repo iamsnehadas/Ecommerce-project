@@ -229,3 +229,35 @@ input[type="radio"]:disabled + label {
     font-weight: 500;
     margin-bottom: 40px;
 }
+
+@media(max-width:767px) {
+    body {
+        margin: 0;
+        padding: 0;
+    }
+    .pay-container {
+        flex-direction: column-reverse;
+        padding-left: 10px;
+        padding-right: 10px;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+    }
+    .summary-confirm, .shipping, .payment {
+        width: 90vw;
+    }
+    .name {
+        flex-direction: column;
+    }
+    .name input {
+        width: 100%;
+    }
+    .brand {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .logo {
+        padding-left: 0;
+    }
+}
