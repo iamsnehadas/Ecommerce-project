@@ -62,7 +62,7 @@ A full-stack e-commerce application for purchasing physical and digital statione
 2. Update API URL in `scripts/payment.js` and `scripts/confirmation.js` to [const API_URL = 'http://localhost:5000/api';]
 3. Serve with any static server
 
-###Upcoming Features
+## Upcoming Features
 
 1. Search functionality
 2. Authentication ...and more
