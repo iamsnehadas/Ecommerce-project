@@ -270,18 +270,31 @@ header, .navbar {
         max-width: 100vw;
         margin: 10%;
     }
+    .product-details {
+        font-size: 24px;
+    }
     .add-to-cart {
         margin-left: 0;
     }
     .logo {
-        height: 40px;
-        padding-left: 10px;
-    }    
-    .user, .cart-img {
-        height: 40px;
+        height: 80px;
+        padding-left: 0;
+    }
+    .navbar {
+        justify-content: space-between;
+    }
+    .right {
+        padding-right: 0;
+    }   
+    .cart-img {
+        height: 80px;
         margin-left: 20px; 
     }
     .cart-counter {
-        padding-left: 38px;
+        font-size: 40px;
+        padding-left: 58px;
+    }
+    .product-pricing {
+        font-size: 22px;
     }
 }
