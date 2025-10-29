@@ -146,3 +146,39 @@ header, .navbar {
     margin-bottom: 40px;
 }
 /*---Footer End---*/
+
+@media (max-width: 767px) {
+    html, body {
+        margin: 0;
+        padding: 10px;
+    }
+    .products-holder {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+    .picture-card {
+        padding-left: 15px;
+        padding-right: 15px;
+        margin-top: 40px;
+    }
+    img.picture {
+        height: 200px;
+    }
+    .tagline {
+        text-align: justify;
+    }
+    .headline {
+        font-size: 34px;
+    }
+    .logo {
+        height: 80px;
+        padding-left: 0;
+    }
+    .navbar {
+        justify-content: space-between;
+    }
+    .right {
+        padding-right: 0;
+    }
+}
